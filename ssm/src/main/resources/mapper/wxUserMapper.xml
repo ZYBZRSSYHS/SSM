@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wx.dao.wxUserDao">
+
+    <sql id="userField">
+        ${prefix}.id as "id",
+        ${prefix}.name as "name",
+        ${prefix} .password as "password"
+    </sql>
+
+    <!--获取所有用户-->
+    <select id="findAll" resultType="com.wx.model.wxUser">
+          select
+          <include refid="userField">
+            <property name="prefix" value="vvv"></property>
+          </include>
+          from wx_user as vvv
+    </select>
+
+    <select id="findById" parameterType="String" resultType="com.wx.model.wxUser">
+        select * from wx_user
+        where id = #{id}
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="com.wx.model.wxUser">
+        select * from wx_user
+        where name = #{name}
+    </select>
+
+    <select id="countyByName" parameterType="String" resultType="int">
+        select count(*) from wx_user
+        where name = #{name}
+    </select>
+
+
+    <insert id="insert" parameterType="com.wx.model.wxUser"
+                        useGeneratedKeys="true" keyProperty="password">
+        insert into wx_user(id,name,password)
+        values (#{id},#{name},#{password})
+    </insert>
+
+    <update id="update" parameterType="com.wx.model.wxUser">
+        update wx_user
+        set
+        name = #{name},
+        password = #{password}
+        where id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="int">
+        delete from wx_user
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByName" parameterType="String">
+        delete from wx_user
+        where name = #{name}
+    </delete>
+
+</mapper>

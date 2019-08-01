@@ -1,0 +1,6 @@
+com\wx\model\wxUser.class
+com\wx\service\Impl\wxUserServiceImpl.class
+com\wx\controller\wxTestController.class
+com\wx\service\wxUserService.class
+com\wx\dao\wxUserDao.class
+com\wx\controller\wxUserController.class
